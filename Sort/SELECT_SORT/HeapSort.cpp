@@ -45,6 +45,37 @@ void HeapSort(int A[], int len)
     }
 }
 
+void JudgeHeap(int A[], int len)
+{
+    if (len % 2 == 0)
+    {
+        if (A[len / 2] > A[len])
+        {
+            printf("Not a Small Head Heap.");
+        }
+        for (int i = len / 2; i > 0; i--)
+        {
+            if (A[i] > A[2 * i] || A[i] > A[2 * i + 1])
+            {
+                printf("Not a Small Head Heap.");
+                break;
+            }
+        }
+    }
+    else
+    {
+        for (int i = len / 2; i > 0; i--)
+        {
+            if (A[i] > A[2 * i] || A[i] > A[2 * i + 1])
+            {
+                printf("Not a Small Head Heap.");
+                break;
+            }
+        }
+    }
+    printf("It is a Small Head Heap.");
+}
+
 int main()
 {
     int a[] = {NULL, 4, 7, 6, 5, 9, 12};
@@ -54,4 +85,5 @@ int main()
     {
         printf("%d ", a[i]);
     }
+    JudgeHeap(a, len);
 }
