@@ -178,11 +178,40 @@ void DeleteRangeNum(LinkList L, int h, int t)
     ShowLinkList(L);
 }
 
+void LinkListSelectSort(LinkList L)
+{
+    int len = GetLen(L);
+    LNode *p = L->next;
+    LNode *later = p->next;
+    LNode *flag;
+    for (int i = 1; i < len; i++)
+    {
+        int min = p->data;
+        while (later != NULL)
+        {
+            if (min > later->data)
+            {
+                min = later->data;
+                flag = later;
+            }
+            later = later->next;
+        }
+        int tmp = 0;
+        tmp = p->data;
+        p->data = min;
+        flag->data = tmp;
+        p = p->next;
+        later = p->next;
+    }
+}
+
 int main()
 {
     LinkList L = NULL;
     List_TailInsert(L);
     // LinkListSort(L);
-    DeleteRangeNum(L, 1, 3);
+    // DeleteRangeNum(L, 1, 3);
+    LinkListSelectSort(L);
+    ShowLinkList(L);
     return 0;
 }
